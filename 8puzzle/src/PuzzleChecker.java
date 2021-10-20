@@ -7,7 +7,7 @@
  *  on the command line and finds the minimum number of moves to
  *  reach the goal state.
  *
- *  % java-algs4 PuzzleChecker puzzle*.txt
+ *  % java-algs4 PuzzleChecker puzzle*.txtjava
  *  puzzle00.txt: 0
  *  puzzle01.txt: 1
  *  puzzle02.txt: 2
@@ -38,7 +38,7 @@ public class PuzzleChecker {
 
         // for each command-line argument
         List<String> fn = new ArrayList<>();
-        String path = ".\\test";        //要遍历的路径
+        String path = "..\\test";        //要遍历的路径
         File file = new File(path);        //获取其file对象
         File[] fs = file.listFiles();    //遍历path下的文件和目录，放在File数组中
         for (int k = 0; k < fs.length; k++) {                    //遍历File[]数组

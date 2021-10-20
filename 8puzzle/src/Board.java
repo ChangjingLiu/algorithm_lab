@@ -4,8 +4,9 @@ import java.util.Arrays;
 public class Board {
     private final int[][] tiles;
     private final int N;
+    private int M;
 
-    //123123
+    //123
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
     public Board(int[][] tiles) {

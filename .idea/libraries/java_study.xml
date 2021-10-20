@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="java_study">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/8puzzle.zip!/" />
+      <root url="jar://$PROJECT_DIR$/collinear1.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

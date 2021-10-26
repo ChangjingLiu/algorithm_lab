@@ -1,15 +1,20 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.StdDraw;
 
 public class KdTree {
     private Node root;
+    private int size;
 
     private static class Node {
-        private Point2D p;      // the point
-        private RectHV rect;    // the axis-aligned rectangle corresponding to this node
+        private final Point2D p;      // the point
+        private final RectHV rect;    // the axis-aligned rectangle corresponding to this node
         private Node lb;        // the left/bottom subtree
         private Node rt;        // the right/top subtree
-        private int N;          // count
-        private int depth;
+        //private int N;          // count
+        private final int depth;
         //private boolean vert;
 
         public Node(Point2D p, int depth, RectHV rect) {
@@ -23,21 +28,22 @@ public class KdTree {
     }
 
     public boolean isEmpty() {
-        return size(root) == 0;
+        return size() == 0;
     }
 
     public int size() {
-        return size(root);
-    }
-
-    private int size(Node x) {
-        if (x == null) return 0;
-        else return x.N;
+        return size;
     }
 
     public void insert(Point2D p) {
+        if (p == null) {
+            throw new IllegalArgumentException();
+        }
+        if (contains(p))
+            return;
         RectHV Rect = new RectHV(0, 0, 1, 1);
         root = insert(root, p, 0, Rect);
+        size++;
     }
 
     private Node insert(Node x, Point2D p, int depth, RectHV rect) {
@@ -68,6 +74,51 @@ public class KdTree {
         return x;
     }
 
+    public boolean contains(Point2D p) {
+        if (p == null) {
+            throw new IllegalArgumentException();
+        } else {
+            if (root == null) {
+                return false;
+            } else {
+                // 递归的写法
+                return contains(p, root);
+            }
+        }
+    }
+
+    private int compare(Point2D p, Node n) {
+        if (n.depth % 2 == 0) {
+            // 如果是偶数层，按 x 比较
+            if (Double.compare(p.x(), n.p.x()) == 0) {
+                return Double.compare(p.y(), n.p.y());
+            } else {
+                return Double.compare(p.x(), n.p.x());
+            }
+        } else {
+            // 按 y 比较
+            if (Double.compare(p.y(), n.p.y()) == 0) {
+                return Double.compare(p.x(), n.p.x());
+            } else {
+                return Double.compare(p.y(), n.p.y());
+            }
+        }
+    }
+
+    private boolean contains(Point2D p, Node node) {
+        if (node == null) {
+            return false;
+        } else if (p.equals(node.p)) {
+            return true;
+        } else {
+            if (compare(p, node) < 0) {
+                return contains(p, node.lb);
+            } else {
+                return contains(p, node.rt);
+            }
+        }
+    }
+
     public void draw() {
         for (Node node : Get_Nodes()) {
 
@@ -90,7 +141,7 @@ public class KdTree {
         StdDraw.show();
     }
 
-    public Iterable<Node> Get_Nodes() {
+    private Iterable<Node> Get_Nodes() {
         Queue<Node> kNodes = new Queue<Node>();
         order(root, kNodes);
         return kNodes;

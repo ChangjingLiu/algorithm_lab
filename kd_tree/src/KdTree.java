@@ -1,7 +1,4 @@
-import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.RectHV;
-import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.*;
 
 public class KdTree {
     private Node root;
@@ -104,6 +101,22 @@ public class KdTree {
         q.enqueue(node);
         order(node.lb, q);
         order(node.rt, q);
+    }
+
+    public Iterable<Point2D> range(RectHV rect) {
+        if (rect == null) {
+            throw new IllegalArgumentException();
+        }
+        SET<Point2D> inside_Nodes = new SET<Point2D>();
+        for (Node i : Get_Nodes()) {
+            if (rect.contains(i.p)) {
+                inside_Nodes.add(i.p);
+            }
+        }
+        //SET<Point2D> inside_Points = new SET<Point2D>();
+
+
+        return inside_Nodes;
     }
 
     public static void main(String[] args) {

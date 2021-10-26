@@ -22,7 +22,7 @@ public class RangeSearchVisualizer {
     public static void main(String[] args) {
 
         // initialize the data structures from file
-        String filename = args[0];
+        String filename = "123.txt";
         In in = new In(filename);
         PointSET brute = new PointSET();
         KdTree kdtree = new KdTree();
@@ -34,8 +34,8 @@ public class RangeSearchVisualizer {
             brute.insert(p);
         }
 
-        double x0 = 0.0, y0 = 0.0;      // initial endpoint of rectangle
-        double x1 = 0.0, y1 = 0.0;      // current location of mouse
+        double x0 = 0.2, y0 = 0.2;      // initial endpoint of rectangle
+        double x1 = 0.7, y1 = 0.7;      // current location of mouse
         boolean isDragging = false;     // is the user dragging a rectangle
 
         // draw the points
@@ -89,8 +89,8 @@ public class RangeSearchVisualizer {
             // draw the range search results for kd-tree in blue
             StdDraw.setPenRadius(0.02);
             StdDraw.setPenColor(StdDraw.BLUE);
-            //for (Point2D p : kdtree.range(rect))
-            //    p.draw();
+            for (Point2D p : kdtree.range(rect))
+                p.draw();
 
             StdDraw.show();
             StdDraw.pause(20);

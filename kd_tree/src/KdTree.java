@@ -108,15 +108,67 @@ public class KdTree {
             throw new IllegalArgumentException();
         }
         SET<Point2D> inside_Nodes = new SET<Point2D>();
-        for (Node i : Get_Nodes()) {
-            if (rect.contains(i.p)) {
-                inside_Nodes.add(i.p);
+
+        range(root, inside_Nodes, rect);
+        return inside_Nodes;
+    }
+
+    private void range(Node node, SET<Point2D> points, RectHV rect) {
+        if (rect.contains(node.p)) {
+            points.add(node.p);
+        }
+        if (node.lb != null && node.rect.intersects(rect)) {
+            range(node.lb, points, rect);  //左子树
+        }
+
+        if (node.rt != null && node.rect.intersects(rect)) {
+            range(node.rt, points, rect);  //右子树
+        }
+
+    }
+
+    public Point2D nearest(Point2D p) {
+        if (p == null)
+            throw new NullPointerException();
+        if (root != null)
+            return nearPoint(root, p, root).p;
+        return null;
+    }
+
+    private Node nearPoint(Node kd, Point2D query, Node target) {
+        if (kd == null) return target;
+        double nrDist = query.distanceSquaredTo(target.p);//last find target dis
+        double kdDist = query.distanceSquaredTo(kd.p);
+
+        if (nrDist >= kdDist || nrDist >= kd.rect.distanceSquaredTo(query)) {
+
+            if (nrDist > kdDist) target = kd;
+
+            if (kd.depth % 2 == 0) {
+                double cmpX = query.x() - kd.p.x();
+                if (cmpX < 0.0) {
+                    //左侧
+                    if (kd.lb != null) target = nearPoint(kd.lb, query, target);
+                    if (kd.rt != null) target = nearPoint(kd.rt, query, target);
+                } else {
+                    //右侧
+                    if (kd.rt != null) target = nearPoint(kd.rt, query, target);
+                    if (kd.lb != null) target = nearPoint(kd.lb, query, target);
+                }
+            } else {
+                double cmpY = query.y() - kd.p.y();
+                if (cmpY < 0.0) {
+                    //下侧
+                    if (kd.lb != null) target = nearPoint(kd.lb, query, target);
+                    if (kd.rt != null) target = nearPoint(kd.rt, query, target);
+                } else {
+                    //上侧
+                    if (kd.rt != null) target = nearPoint(kd.rt, query, target);
+                    if (kd.lb != null) target = nearPoint(kd.lb, query, target);
+                }
             }
         }
-        //SET<Point2D> inside_Points = new SET<Point2D>();
-
-
-        return inside_Nodes;
+        return target;
     }
 
     public static void main(String[] args) {

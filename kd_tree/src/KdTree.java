@@ -38,12 +38,14 @@ public class KdTree {
     public void insert(Point2D p) {
         if (p == null) {
             throw new IllegalArgumentException();
-        }
-        if (contains(p))
+        } else if (contains(p))
             return;
-        RectHV Rect = new RectHV(0, 0, 1, 1);
-        root = insert(root, p, 0, Rect);
-        size++;
+        else {
+            RectHV Rect = new RectHV(0, 0, 1, 1);
+            root = insert(root, p, 0, Rect);
+            size++;
+        }
+
     }
 
     private Node insert(Node x, Point2D p, int depth, RectHV rect) {
@@ -188,7 +190,7 @@ public class KdTree {
 
     private Node nearPoint(Node kd, Point2D query, Node target) {
         if (kd == null) return target;
-        double nrDist = query.distanceSquaredTo(target.p);//last find target dis
+        double nrDist = query.distanceSquaredTo(target.p);//last find target distance
         double kdDist = query.distanceSquaredTo(kd.p);
 
         if (nrDist >= kdDist || nrDist >= kd.rect.distanceSquaredTo(query)) {

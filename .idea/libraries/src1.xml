@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="src1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/kd_tree/src/src.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

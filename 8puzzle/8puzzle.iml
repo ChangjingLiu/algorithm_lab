@@ -12,9 +12,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name=".lift1" level="project" />
     <orderEntry type="library" name="algs4" level="project" />
-    <orderEntry type="library" name=".lift2" level="project" />
     <orderEntry type="library" name=".lift" level="project" />
   </component>
 </module>

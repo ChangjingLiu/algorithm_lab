@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="queues1">
+  <library name="src">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/queues/out/production/queues/queues.zip!/" />
+      <root url="jar://$PROJECT_DIR$/kd_tree/out/production/kd_tree/src.zip!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

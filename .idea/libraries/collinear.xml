@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="collinear">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/collinear/src/collinear.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

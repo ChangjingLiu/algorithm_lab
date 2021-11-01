@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="8Puzzle1">
+  <library name="src1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/8puzzle/out/production/8puzzle/8Puzzle.zip!/" />
+      <root url="jar://$PROJECT_DIR$/kd_tree/src/src.zip!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

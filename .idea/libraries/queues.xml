@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="queues">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/queues/src/queues.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

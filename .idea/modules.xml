@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/kd_tree/kd_tree.iml" filepath="$PROJECT_DIR$/kd_tree/kd_tree.iml" />
       <module fileurl="file://$PROJECT_DIR$/percolation/percolation.iml" filepath="$PROJECT_DIR$/percolation/percolation.iml" />
       <module fileurl="file://$PROJECT_DIR$/queues/queues.iml" filepath="$PROJECT_DIR$/queues/queues.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wordnet/wordnet.iml" filepath="$PROJECT_DIR$/wordnet/wordnet.iml" />
     </modules>
   </component>
 </project>

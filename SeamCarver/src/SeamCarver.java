@@ -39,26 +39,25 @@ public class SeamCarver {
         }
         else{
             //x-gradient
-            int R_x= (this.picture.getRGB(x-1,y)>> 16)&0xFF-
-                    (this.picture.getRGB(x+1,y)>> 16)&0xFF;
-            int G_x= (this.picture.getRGB(x-1,y)>> 8)&0xFF-
-                    (this.picture.getRGB(x+1,y)>> 8)&0xFF;
-            int B_x= (this.picture.getRGB(x - 1, y))&0xFF-
-                    (this.picture.getRGB(x + 1, y))&0xFF;
+            int left=this.picture.getRGB(x-1,y);
+            int right=this.picture.getRGB(x-1,y);
+            int R_x= (left>> 16)&0xFF-(right>>16)&0xFF;
+            int G_x= (left>> 8)&0xFF-(right>> 8)&0xFF;
+            int B_x= left&0xFF-right&0xFF;
             int RGB_x=R_x*R_x+G_x*G_x+B_x*B_x;
 
             //Y-gradient
-            int R_y= (this.picture.getRGB(x,y-1)>> 16)&0xFF-
-                    (this.picture.getRGB(x,y+1)>> 16)&0xFF;
-            int G_y= (this.picture.getRGB(x,y-1)>> 8)&0xFF-
-                    (this.picture.getRGB(x,y+1)>> 8)&0xFF;
-            int B_y= (this.picture.getRGB(x, y-1))&0xFF-
-                    (this.picture.getRGB(x, y+1))&0xFF;
+            int top=this.picture.getRGB(x,y+1);
+            int bottom=this.picture.getRGB(x,y-1);
+            int R_y= (top>> 16)&0xFF-(bottom>> 16)&0xFF;
+            int G_y= (top>> 8)&0xFF-(bottom>> 8)&0xFF;
+            int B_y= (top)&0xFF-(bottom)&0xFF;
             int RGB_y=R_y*R_y+G_y*G_y+B_y*B_y;
 
             return java.lang.Math.sqrt(RGB_x+RGB_y);
         }
     }
+    // sequence of indices for vertical seam
 
     //  unit testing (optional)
     public static void main(String[] args) {

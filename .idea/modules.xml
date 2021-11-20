@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/8puzzle/8puzzle.iml" filepath="$PROJECT_DIR$/8puzzle/8puzzle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaseballElimination/BaseballElimination.iml" filepath="$PROJECT_DIR$/BaseballElimination/BaseballElimination.iml" />
       <module fileurl="file://$PROJECT_DIR$/SeamCarver/SeamCarver.iml" filepath="$PROJECT_DIR$/SeamCarver/SeamCarver.iml" />
       <module fileurl="file://$PROJECT_DIR$/collinear/collinear.iml" filepath="$PROJECT_DIR$/collinear/collinear.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloworld/helloworld.iml" filepath="$PROJECT_DIR$/helloworld/helloworld.iml" />

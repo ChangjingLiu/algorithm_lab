@@ -1,9 +1,4 @@
-import edu.princeton.cs.algs4.FlowEdge;
-import edu.princeton.cs.algs4.FlowNetwork;
-import edu.princeton.cs.algs4.FordFulkerson;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -173,7 +168,7 @@ public class BaseballElimination {
                 FordFulkerson fordFulkerson = new FordFulkerson(G, 0, V - 1);
                 for (int i = 1 + meachesTeamNum; i < V; i++) // 球队节点
                 {
-                    if (fordFulkerson.inCut(i)) {
+                    if (fordFulkerson.inCut(i)) {//最小切
                         int id = this.v2id.get(i); // 网络下标为i的球队的id
                         certificates.enqueue(teamName[id]);
                     }

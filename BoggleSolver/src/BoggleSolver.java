@@ -101,15 +101,15 @@ public class BoggleSolver {
             }
         }
 
-        for(int i=0;i< adj.length;i++){
-            int r=i/cols;
-            int c=i%cols;
-            StdOut.printf("(%d,%d): ",r,c);
-            for(Integer s:adj[i]){
-                StdOut.printf(" (%d,%d)",s/cols,s%cols);
-            }
-            StdOut.println();
-        }
+//        for(int i=0;i< adj.length;i++){
+//            int r=i/cols;
+//            int c=i%cols;
+//            StdOut.printf("(%d,%d): ",r,c);
+//            for(Integer s:adj[i]){
+//                StdOut.printf(" (%d,%d)",s/cols,s%cols);
+//            }
+//            StdOut.println();
+//        }
 
         for(int i=0;i< adj.length;i++){
             marked=new boolean[adj.length];

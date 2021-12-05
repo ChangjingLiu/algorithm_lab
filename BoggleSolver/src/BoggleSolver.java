@@ -1,6 +1,5 @@
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
@@ -9,56 +8,64 @@ import edu.princeton.cs.algs4.TrieST;
 public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
-    TrieST<Integer> dic = new TrieST<Integer>();
-    Bag<Integer>[] adj;
-    int cols,rows;
+    private final TrieST<Integer> dic = new TrieST<Integer>();
+    private Bag<Integer>[] adj;
+    private int cols,rows;
     private boolean[] marked;
-    private String path;
-    private int[] edgeto;
     private Stack<Integer> visitingDices;
-    SET<String> validwords;
-    BoggleBoard board;
+    private SET<String> validwords;
+    private BoggleBoard board;
+    private Node root;
 
     public BoggleSolver(String[] dictionary){
+        root = new Node();
         int cnt=0;
         for(String s:dictionary){
-            dic.put(s,cnt);
+            put(s,cnt);
+            //dic.put(s,cnt);
             cnt++;
         }
 //        StdOut.print(dic.contains("AI"));
     }
+    private static class Node{
+        private int val;
+        private final Node[] next = new Node[26];
+    }
+    private void put(String key,int val){
+        root=put(root,key,val,0);
+    }
 
-
-
-
-
-
-
+    private Node put(Node x, String key,int val,int d){
+        if(x==null) x=new Node();
+        if(d==key.length()){
+            x.val = 1;
+            return x;
+        }
+        int c=key.charAt(d)-'A';
+        x.next[c] = put(x.next[c],key,val,d+1);
+        return x;
+    }
 
     private boolean isExist(int i,int j){
-        if(i>=0&&i<rows&&j>=0&&j<cols){
-            return true;
-        }else {
-            return false;
-        }
+        return i >= 0 && i < rows && j >= 0 && j < cols;
     }
-    private void dfs(Integer v,String str,Stack<Integer> visitingDices){
+    private void dfs(Integer v,Node x,String str,Stack<Integer> visitingDices){
 
-        if(str.length()>=3&& dic.contains(str)){
+        if(str.length()>=3&&x.val==1){
             validwords.add(str);
         }
 
 
         for(Integer s:adj[v]){
             char c = this.board.getLetter(s/cols,s%rows);
-            Queue<String> tmp= (Queue<String>) dic.keysWithPrefix(str+c);
-            if(!marked[s]&&tmp.size()>=1){
+            //Queue<String> tmp= (Queue<String>) dic.keysWithPrefix(str+c);
+            if(!marked[s] && x.next[c - 'A'] != null){
                 visitingDices.push(s);
                 marked[s]=true;
                 if(c=='Q'){
-                    dfs(s,str+"QU",visitingDices);
+                    dfs(s,x.next['Q'-'A'].next['U'-'A'],str+"QU",visitingDices);
                 }else{
-                    dfs(s,str+c,visitingDices);
+                    dfs(s,x.next[c-'A'],str+c,visitingDices);
                 }
 
 
@@ -74,7 +81,7 @@ public class BoggleSolver {
         this.board=board;
         cols= this.board.cols();
         rows= this.board.rows();
-        adj= (Bag<Integer>[])new Bag[cols*rows];//建立bag，长度为dice个数
+        adj= new Bag[cols*rows];//建立bag，长度为dice个数
 
         for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
@@ -92,29 +99,29 @@ public class BoggleSolver {
             }
         }
 
-//        for(int i=0;i< adj.length;i++){
-//            int r=i/cols;
-//            int c=i%cols;
-//            StdOut.printf("(%d,%d): ",r,c);
-//            for(Integer s:adj[i]){
-//                StdOut.printf(" (%d,%d)",s/cols,s%cols);
-//            }
-//            StdOut.println();
-//        }
+        for(int i=0;i< adj.length;i++){
+            int r=i/cols;
+            int c=i%cols;
+            StdOut.printf("(%d,%d): ",r,c);
+            for(Integer s:adj[i]){
+                StdOut.printf(" (%d,%d)",s/cols,s%cols);
+            }
+            StdOut.println();
+        }
 
         for(int i=0;i< adj.length;i++){
             marked=new boolean[adj.length];
             visitingDices = new Stack<Integer>();
             String str="";
-            char c=this.board.getLetter(i/cols,i%rows);
-            if(c=='Q') {
-                str+="QU";
-            }else{
-                str+=c;
-            }
-            marked[i]=true;
-            dfs(i,str,visitingDices);
-            marked[i]=false;
+//            char c=this.board.getLetter(i/cols,i%rows);
+//            if(c=='Q') {
+//                str+="QU";
+//            }else{
+//                str+=c;
+//            }
+            //marked[i]=true;
+            dfs(i,root,str,visitingDices);
+            //marked[i]=false;
         }
 
     }

@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.TrieST;
 
 //dictionary-algs4.txt board4x4.txt
 //dictionary-yawl.txt board-antidisestablishmentarianisms.txt
+//dictionary-yawl.txt board-dichlorodiphenyltrichloroethanes.txt
 public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
@@ -87,7 +88,7 @@ public class BoggleSolver {
 
         for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
-                int v=i*rows+j;//当前dice的索引
+                int v=i*cols+j;//当前dice的索引
                 adj[v] = new Bag<Integer>();//为每个dice建立一个bag
                 //八个方向
                 if(isExist(i-1,j-1))  adj[v].add((i-1)*cols+(j-1));//left_top

@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.TrieST;
 
+//dictionary-algs4.txt board4x4.txt
+//dictionary-yawl.txt board-antidisestablishmentarianisms.txt
 public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
@@ -51,13 +53,13 @@ public class BoggleSolver {
     }
     private void dfs(Integer v,Node x,String str,Stack<Integer> visitingDices){
 
-        if(str.length()>=3&&x.val==1){
+        if(str.length()>=3&&x.val==1&&x!=null){
             validwords.add(str);
         }
 
 
         for(Integer s:adj[v]){
-            char c = this.board.getLetter(s/cols,s%rows);
+            char c = getLetterOnBoard(s);
             //Queue<String> tmp= (Queue<String>) dic.keysWithPrefix(str+c);
             if(!marked[s] && x.next[c - 'A'] != null){
                 visitingDices.push(s);
@@ -112,18 +114,24 @@ public class BoggleSolver {
         for(int i=0;i< adj.length;i++){
             marked=new boolean[adj.length];
             visitingDices = new Stack<Integer>();
-            String str="";
-//            char c=this.board.getLetter(i/cols,i%rows);
-//            if(c=='Q') {
-//                str+="QU";
-//            }else{
-//                str+=c;
-//            }
-            //marked[i]=true;
-            dfs(i,root,str,visitingDices);
-            //marked[i]=false;
+
+            visitingDices.push(i);
+            marked[i]=true;
+            char c=getLetterOnBoard(i);
+            if(c=='Q') {
+                dfs(i,root.next['Q'-'A'].next['U'-'A'],"QU",visitingDices);
+            }else{
+                dfs(i,root.next[c-'A'],c+"",visitingDices);
+            }
+
+
         }
 
+    }
+    private char getLetterOnBoard(int v) {
+        int i = v / cols;
+        int j = v % cols;
+        return board.getLetter(i, j);
     }
     // Returns the set of all valid words in the given Boggle board, as an Iterable.
     public Iterable<String> getAllValidWords(BoggleBoard board){

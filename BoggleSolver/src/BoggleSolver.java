@@ -4,15 +4,15 @@ import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
-//dictionary-algs4.txt board4x4.txt
-//dictionary-yawl.txt board-antidisestablishmentarianisms.txt
-//dictionary-yawl.txt board-dichlorodiphenyltrichloroethanes.txt
+// dictionary-algs4.txt board4x4.txt
+// dictionary-yawl.txt board-antidisestablishmentarianisms.txt
+// dictionary-yawl.txt board-dichlorodiphenyltrichloroethanes.txt
 public class BoggleSolver {
     // Initializes the data structure using the given array of strings as the dictionary.
     // (You can assume each word in the dictionary contains only the uppercase letters A through Z.)
     //private final TrieST<Integer> dic = new TrieST<Integer>();
     private Bag<Integer>[] adj;
-    private int cols,rows;
+    private int cols, rows;
     private boolean[] marked;
     private SET<String> validwords;
     private BoggleBoard board;
@@ -20,9 +20,9 @@ public class BoggleSolver {
 
     public BoggleSolver(String[] dictionary){
         root = new Node();
-        int cnt=0;
+        int cnt = 0;
         for(String s:dictionary){
-            put(s,cnt);
+            put(s, cnt);
             //dic.put(s,cnt);
             cnt++;
         }
@@ -34,7 +34,7 @@ public class BoggleSolver {
     }
 
     private int get(String key){
-        Node x= get(root,key,0);
+        Node x= get(root, key, 0);
         if(x==null) return 0;
         return x.val;
     }
@@ -43,16 +43,16 @@ public class BoggleSolver {
         if(x==null) return null;
         if(d==key.length()) return x;
         int c = key.charAt(d)-'A';
-        return get(x.next[c],key,d+1);
+        return get(x.next[c], key, d+1);
     }
 
     private void put(String key,int val){
-        root=put(root,key,val,0);
+        root=put(root, key, val, 0);
     }
 
     private Node put(Node x, String key,int val,int d){
-        if(x==null) x=new Node();
-        if(d==key.length()){
+        if(x == null) x = new Node();
+        if(d == key.length()){
             x.val = 1;
             return x;
         }
@@ -69,7 +69,7 @@ public class BoggleSolver {
         this.board=board;
         cols= this.board.cols();
         rows= this.board.rows();
-        adj= (Bag<Integer>[])new Bag[cols*rows];//建立bag，长度为dice个数
+        adj= new Bag[cols*rows];//建立bag，长度为dice个数
 
         for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
@@ -173,7 +173,7 @@ public class BoggleSolver {
             if(len<3){
                 return 0;
             }
-            else if(len>=3&&len<=4){
+            else if(len<=4){
                 return 1;
             }
             else if(len==5){

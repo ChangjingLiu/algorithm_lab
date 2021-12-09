@@ -11,8 +11,8 @@ public class CircularSuffixArray {
     private class SuffixesOrder implements Comparator<Integer> {
         //主要关注字符串相等情况
         public int compare(Integer a, Integer b) {
-            //if ((length() - 1) < i) return 1;//i索引超过字符串长度，i大
-            //else if ((length() - 1) < j) return -1;//j索引超过字符串长度，j大
+            //if ((length() - 1) < i) return 1;//
+            //else if ((length() - 1) < j) return -1;//
             for (int i = 0; i < length(); i++) {
                 char c1 = string.charAt((i + a) % length());
                 char c2 = string.charAt((i + b) % length());
@@ -31,10 +31,10 @@ public class CircularSuffixArray {
     public CircularSuffixArray(String s) {
         if (s == null) throw new NullPointerException("null argument");
         string = s;
-        sortSuffixes = new Integer[length()];//新建索引数组
+        sortSuffixes = new Integer[length()];//
         for (int i = 0; i < length(); i++)
             sortSuffixes[i] = i;
-        Arrays.sort(sortSuffixes, suffixesOrder());//索引数组排序
+        Arrays.sort(sortSuffixes, suffixesOrder());//
     }
 
     public int length() {

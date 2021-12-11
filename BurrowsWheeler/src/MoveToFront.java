@@ -10,21 +10,48 @@ public class MoveToFront {
     public static void encode() {
         LinkedList<Character> sequence = new LinkedList<>();
 
-        char[] aux = new char[R];
+        //char[] aux = new char[R];
         for (int i = 0; i < R; i++)
-            aux[i] = (char) i;
+            sequence.add((char) i);
         String input = BinaryStdIn.readString();
+//        StdOut.println(input);
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
-            int index = sequence.indexOf(c);
+            //StdOut.printf("%c", c);
+            char index = (char) sequence.indexOf(c);
             BinaryStdOut.write(index);
             sequence.remove((Object) c);
             sequence.addFirst(c);
         }
-        BinaryStdOut.flush(); // out.close();
+        BinaryStdOut.close(); // out.close();
+    }
+
+    public static void decode() {
+        LinkedList<Character> sequence = new LinkedList<>();
+
+        //char[] aux = new char[R];
+        for (int i = 0; i < R; i++)
+            sequence.add((char) i);
+        String input = BinaryStdIn.readString();
+//        StdOut.println(input);
+        for (int i = 0; i < input.length(); i++) {
+            int c = (int) input.charAt(i);
+            //StdOut.printf("%c", c);
+            char index = sequence.get(c);
+
+            BinaryStdOut.write(index);
+            sequence.remove((Object) index);
+            sequence.addFirst(index);
+        }
+        BinaryStdOut.close(); // out.close();
     }
 
     public static void main(String[] args) {
+        if (args[0].equals("-")) {
+            encode();
+        } else {
+            decode();
+        }
 
     }
 }

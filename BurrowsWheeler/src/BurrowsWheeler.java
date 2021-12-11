@@ -1,6 +1,6 @@
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
-//1:compile javac-algs4 BurrowsWheeler
+//1:compile javac-algs4 BurrowsWheeler.java
 //2:run
 //java-algs4 BurrowsWheeler - < src/abra.txt | java-algs4 edu.princeton.cs.algs4.HexDump 16
 

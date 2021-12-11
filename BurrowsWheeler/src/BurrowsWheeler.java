@@ -11,7 +11,7 @@ public class BurrowsWheeler {
     public static void transform() {
         StringBuilder input = new StringBuilder();
         while (!BinaryStdIn.isEmpty()) {
-            input.append(BinaryStdIn.readString());
+            input.append(BinaryStdIn.readChar());
         }
 //        String input = BinaryStdIn.readString();
         CircularSuffixArray arr = new CircularSuffixArray(input.toString());
@@ -42,7 +42,12 @@ public class BurrowsWheeler {
     public static void inverseTransform() {
         //key-indexed counting algorithm
         int first = BinaryStdIn.readInt();
-        String a = BinaryStdIn.readString();
+        StringBuilder a = new StringBuilder();
+        while (!BinaryStdIn.isEmpty()) {
+            a.append(BinaryStdIn.readChar());
+            //input.append(BinaryStdIn.readChar());
+        }
+        //String a = BinaryStdIn.readString();
         int N = a.length();
         int[] count = new int[257];
         int[] next = new int[N];

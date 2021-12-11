@@ -29,7 +29,7 @@ public class CircularSuffixArray {
 
     // circular suffix array of s
     public CircularSuffixArray(String s) {
-        if (s == null) throw new NullPointerException("null argument");
+        if (s == null) throw new IllegalArgumentException("null argument");
         string = s;
         sortSuffixes = new Integer[length()];//
         for (int i = 0; i < length(); i++)

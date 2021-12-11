@@ -13,7 +13,11 @@ public class MoveToFront {
         //char[] aux = new char[R];
         for (int i = 0; i < R; i++)
             sequence.add((char) i);
-        String input = BinaryStdIn.readString();
+
+        StringBuilder input = new StringBuilder();
+        while (!BinaryStdIn.isEmpty()) {
+            input.append(BinaryStdIn.readChar());
+        }
 //        StdOut.println(input);
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
@@ -32,7 +36,10 @@ public class MoveToFront {
         //char[] aux = new char[R];
         for (int i = 0; i < R; i++)
             sequence.add((char) i);
-        String input = BinaryStdIn.readString();
+        StringBuilder input = new StringBuilder();
+        while (!BinaryStdIn.isEmpty()) {
+            input.append(BinaryStdIn.readChar());
+        }
 //        StdOut.println(input);
         for (int i = 0; i < input.length(); i++) {
             int c = (int) input.charAt(i);

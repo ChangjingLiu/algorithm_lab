@@ -2,10 +2,16 @@
 > These are solution for the algorithm course of Princeton
 
 ## Table of Contents
-* [Optimal Estimation](#optimal-estimation)
-* [Wiener Filter](#wiener-filter)
-* [Kalman Filter](#kalman-filter)
-* [Fuzzy Control](#fuzzy-control)
+* [Percolation](#percolation)
+* [Deques and Randomized Queues](#deques-and-randomized-queues)
+* [Collinear Points](#collinear-points)
+* [8 Puzzle](#8-puzzle)
+* [Kd-Trees](#kd-trees)
+* [WordNet](#wordnet)
+* [Seam Carving](#seam-carving)
+* [Baseball Elimination](#baseball-elimination)
+* [Boggle](#boggle)
+* [Burrows Wheeler](#burrows-wheeler)
 * [Contact](#contact)
 <!-- * [License](#license) -->
 
@@ -19,7 +25,7 @@
 ## Seam Carving
 ## Baseball Elimination
 ## Boggle
-## Burrows–Wheeler
+## Burrows Wheeler
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 ## Contact
